@@ -1,18 +1,15 @@
-## Terminal Chat
+# __Terminal Chat__
 This allows you to participate in a ParlAI world as an agent using the terminal.
 This extends the `websocket` chat service implementation to run a server locally,
 which you can send and receive messages from using the terminal.
 
-## Setup
-1. Run:
+## __Run__
+Start the bot as follows,
+```
+python main.py --config < ParlAI_config > --port < Listen_port >
+```
+The default port is `34596`. So, to connect to the chatbot, one should connect to `localhost:34596`. If the bot is hosted on a cloud instance, say GCP, one should ping the public IP of the instance at port `34596`.
 
- `python parlai/chat_service/services/terminal_chat/run.py --config-path path/to/config.yml --port PORT_NUMBER`
+## __Config__
+See configuration `YAML` files under the folder [config](./config/) for how you can control the model loaded.
 
-  Example:
-
-   `python parlai/chat_service/services/terminal_chat/run.py --config-path parlai/chat_service/tasks/chatbot/config.yml --port 10001`
-
-2. Run: `python client.py --port PORT_NUMBER`
-3. Interact
-
-If no port number is specified in `--port` then the default port used will be `34596`. If specifying, ensure both port numbers match on client and server side.
