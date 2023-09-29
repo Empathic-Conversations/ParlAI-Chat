@@ -7,7 +7,7 @@ conda create --force -n parlai python=3.8 -y
 conda activate parlai
 
 # Install torch
-conda install pytorch==1.12.1 cudatoolkit=11.8 -c pytorch -c conda-forge -y
+pip install torch --index-url https://download.pytorch.org/whl/cu118
 
 # Install openai (for gpt3 prompting)
 pip install openai
