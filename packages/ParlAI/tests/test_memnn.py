@@ -56,8 +56,7 @@ class TestMemnn(unittest.TestCase):
             )
         )
 
-        # (4/14/23) Changed the accuracy from 0.88 to 0.85 to pass the tests.
-        self.assertGreaterEqual(valid['accuracy'], 0.85)
+        self.assertGreaterEqual(valid['accuracy'], 0.88)
         self.assertGreaterEqual(valid['f1'], 0.999)
         self.assertGreaterEqual(test['accuracy'], 0.84)
         self.assertGreaterEqual(test['f1'], 0.999)

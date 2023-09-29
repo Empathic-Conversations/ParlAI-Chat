@@ -488,12 +488,6 @@ class TorchGeneratorAgent(TorchAgent, ABC):
             help='Set to use CUDA kernel for beam search ngram blocking',
             default=False,
         )
-        parser.add_argument(
-            '--verbose-topk',
-            type=int,
-            help='Return the topk logits in the act message, if verbose mode is set.',
-            default=-1,
-        )
 
         super().add_cmdline_args(parser, partial_opt=partial_opt)
         return agent
@@ -919,8 +913,6 @@ class TorchGeneratorAgent(TorchAgent, ABC):
         self.model.eval()
         cand_scores = None
         token_losses = None
-        logits = None
-        logit_inds = None
         text_token_info = None
 
         if batch.label_vec is not None:
@@ -930,16 +922,6 @@ class TorchGeneratorAgent(TorchAgent, ABC):
                 token_losses = self._construct_label_token_losses(
                     batch.label_vec, model_output
                 )
-                logits = model_output[0]
-                k = self.opt['verbose_topk']
-                if k != -1:
-                    tk = torch.topk(logits, k, dim=2)
-                    logits = tk.values
-                    logit_inds = tk.indices
-                    if isinstance(logit_inds, torch.Tensor):
-                        logit_inds = logit_inds.cpu().numpy().tolist()
-                if isinstance(logits, torch.Tensor):
-                    logits = logits.cpu().numpy().tolist()
 
         beam_preds_scores = None
         preds = None
@@ -995,12 +977,7 @@ class TorchGeneratorAgent(TorchAgent, ABC):
             # compute additional bleu scores
             self._compute_fairseq_bleu(batch, preds)
         retval = Output(
-            text,
-            cand_choices,
-            token_losses=token_losses,
-            cand_scores=cand_scores,
-            logits=logits,
-            logit_inds=logit_inds,
+            text, cand_choices, token_losses=token_losses, cand_scores=cand_scores
         )
 
         if not self.skip_generation:

@@ -15,7 +15,7 @@ function LoadingScreen() {
 }
 
 function TaskFrontend({ taskData, taskConfig, isOnboarding, onSubmit }) {
-  if (!taskData || (!isOnboarding && taskData[0] === undefined)) {
+  if (!taskData) {
     return <LoadingScreen />;
   }
   if (isOnboarding) {

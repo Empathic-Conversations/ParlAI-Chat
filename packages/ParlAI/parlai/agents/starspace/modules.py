@@ -17,6 +17,7 @@ class Starspace(nn.Module):
             opt['embeddingsize'],
             0,
             sparse=True,
+            max_norm=opt['embeddingnorm'],
         )
         if not opt['tfidf']:
             dict = None
@@ -27,6 +28,7 @@ class Starspace(nn.Module):
                 opt['embeddingsize'],
                 0,
                 sparse=True,
+                max_norm=opt['embeddingnorm'],
             )
             self.encoder2 = Encoder(self.lt2, dict)
         else:

@@ -9,38 +9,36 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap-chat/styles.css";
-import ResizableTextArea from "react-fluid-textarea";
+import ResizableTextArea from 'react-fluid-textarea';
 
 import { ChatApp, ChatMessage, DefaultTaskDescription } from "bootstrap-chat";
 
-function RenderChatMessage({ message, mephistoContext, appContext }) {
+function RenderChatMessage({ message, mephistoContext, appContext, idx }) {
   const { agentId } = mephistoContext;
   const { currentAgentNames } = appContext.taskContext;
 
   return (
-    <ChatMessage
-      isSelf={message.id === agentId || message.id in currentAgentNames}
-      agentName={
-        message.id in currentAgentNames
-          ? currentAgentNames[message.id]
-          : message.id
-      }
-      message={message.text}
-      taskData={message.task_data}
-      messageId={message.message_id}
-    />
+      <ChatMessage
+        isSelf={message.id === agentId || message.id in currentAgentNames}
+        agentName={
+          message.id in currentAgentNames
+            ? currentAgentNames[message.id]
+            : message.id
+        }
+        message={message.text}
+        taskData={message.task_data}
+        messageId={message.message_id}
+      />
   );
 }
 
 function logSelection(event) {
-  const selection = event.target.value.substring(
-    event.target.selectionStart,
-    event.target.selectionEnd
-  );
-  console.log(selection);
+  const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
+  console.log(selection)
 }
 
-function Passage({ passage }) {
+function Passage({passage}) {
+
   // Formatting to make textarea look like div, span selection works best on textarea
   const mystyle = {
     outline: "none",
@@ -49,20 +47,14 @@ function Passage({ passage }) {
     border: "0px"
   };
   if (passage) {
-    return (
-      <div>
-        <h2>Passage</h2>
-        <ResizableTextArea
-          defaultValue={passage}
-          readOnly
-          style={mystyle}
-          onClick={logSelection}
-        />
-      </div>
-    );
+    return (<div>
+      <h2>Passage</h2>
+      <ResizableTextArea defaultValue={passage} readOnly style={mystyle} onClick={logSelection}/>
+      </div>)
   }
-  return null;
+  return null
 }
+
 
 function MainApp() {
   const [passage, setPassage] = React.useState("");
@@ -87,10 +79,10 @@ function MainApp() {
           <Passage passage={passage} />
         </DefaultTaskDescription>
       )}
-      onMessagesChange={messages => {
-        if (messages.length > 0 && "passage" in messages[messages.length - 1]) {
+      onMessagesChange={(messages) => {
+        if (messages.length > 0 && 'passage' in messages[messages.length - 1]) {
           console.log("setting passage");
-          setPassage(messages[messages.length - 1].passage);
+          setPassage(messages[messages.length - 1].passage)
         }
       }}
     />

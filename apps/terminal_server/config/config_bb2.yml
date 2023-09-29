@@ -1,0 +1,46 @@
+task_name:    render-bot
+max_workers:  30
+world_module: src.worlds
+overworld:    RenderOverworld
+
+tasks:
+  default:
+    onboard_world:   RenderBotChatOnboardWorld
+    task_world  :    RenderBotChatTaskWorld
+    timeout:         1800
+    agents_required: 1
+
+opt:
+  debug: True
+  models:
+    RenderBot:
+      model: _custom/gpt3_render
+
+      # If true, the bot will store rendered self-utterance instead of 
+      # the original utterance. This only works for the agent that 
+      # stores dialogue history (i.e., has the `.history` attribute)
+      is_render_aware: True
+
+      # GPT-3 config
+      gpt3:
+        style: empathetic
+
+        # If true, the bot will echo the user's input
+        is_dry_run: False
+        
+        # These arguments will be fed to openai's completion API call,
+        # see https://beta.openai.com/docs/api-reference/completions/create
+        generation_config:
+          model: text-davinci-003
+          top_p: 1
+          max_tokens: 50
+          temperature: 0
+          stop: ["}"]
+      generator:
+        model: transformer/generator
+        model_file: zoo:blenderbot2/blenderbot2_3B/model
+        interactive_mode: True
+        doc_chunk_split_mode: word
+        override:
+          search_server: http://localhost:5000
+          no_cuda: False

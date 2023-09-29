@@ -1730,12 +1730,8 @@ class ConversationTeacher(DialogTeacher):
         eps = []
         for xturn, yturn in zip(xturns, yturns):
             turn = {}
-            turn['text'] = xturn.get('text')
-            turn['labels'] = [yturn.get('text')]
-
-            turn['x_turn'] = dict(xturn)
-            turn['y_turn'] = dict(yturn)
-
+            turn['text'] = xturn.get('text').strip()
+            turn['labels'] = [yturn.get('text').strip()]
             eps.append(turn)
         return eps
 
@@ -1841,8 +1837,8 @@ class AbstractImageTeacher(FixedDialogTeacher):
         available_model_names = self.get_available_image_mode_names()
         if a not in available_model_names:
             raise argparse.ArgumentTypeError(
-                f'"{a}" unknown image model name. Choose from: {available_model_names}.'
-                'Currently suggested resnet is resnet152 and resnext is resnext101_32x48d_wsl.'
+                '\"%s\" unknown image model name. Choose from: %s. Currently suggested resnet is resnet152 and resnext is resnext101_32x48d_wsl.'
+                % (a, available_model_names)
             )
         return a
 

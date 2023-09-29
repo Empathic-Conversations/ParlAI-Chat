@@ -170,7 +170,7 @@ var handleSubtaskSubmit = function (subtaskIndex, setIndex, numSubtasks, initial
       alert('Unable to submit task due to malformed data. Please contact requester.');
       return;
     }
-    mephistoSubmit({final_data: window.workerAnswers});
+    mephistoSubmit(window.workerAnswers);
   }
   showDisableCssNextButton();
   setIndex(subtaskIndex + 1); 

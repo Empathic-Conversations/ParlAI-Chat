@@ -154,9 +154,8 @@ class TestConversationTeacher(unittest.TestCase):
                     '{"dialog": [[{"id": "speaker1"}, {"text": "Hello.", "id": "speaker2"}]]}\n'
                 )
             opt = {'task': 'jsonfile', 'jsonfile_datapath': fp, 'verbose': True}
-
-            train_out, _, _ = testing_utils.display_data(opt)
-            self.assertTrue("'text': None" in train_out.split('\n')[1])
+            with self.assertRaises(AttributeError):
+                testing_utils.display_data(opt)
 
     def test_firstspeaker_label(self):
         with testing_utils.tempdir() as tmpdir:
@@ -176,7 +175,7 @@ class TestConversationTeacher(unittest.TestCase):
                 l.split(':', 1)[-1].strip()
                 for l in train_out.split('\n')
                 if l in train_out
-                if '[text]' in l
+                if 'text' in l
             ]
             labels = [
                 l.split(':', 1)[-1].strip()
@@ -205,7 +204,7 @@ class TestConversationTeacher(unittest.TestCase):
                 l.split(':', 1)[-1].strip()
                 for l in train_out.split('\n')
                 if l in train_out
-                if '[text]' in l
+                if 'text' in l
             ]
             labels = [
                 l.split(':', 1)[-1].strip()
@@ -234,7 +233,7 @@ class TestConversationTeacher(unittest.TestCase):
                 l.split(':', 1)[-1].strip()
                 for l in train_out.split('\n')
                 if l in train_out
-                if '[text]' in l
+                if 'text' in l
             ]
             labels = [
                 l.split(':', 1)[-1].strip()
