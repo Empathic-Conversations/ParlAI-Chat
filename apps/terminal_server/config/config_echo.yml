@@ -18,7 +18,8 @@ opt:
       gpt3:
         style: empathetic
 
-        # If true, the bot will echo the user's input
+        # If true, the bot will return the original generated text
+        # without performing any style transfer
         is_dry_run: True
         
         # These arguments will be fed to openai's completion API call,
