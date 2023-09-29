@@ -14,7 +14,7 @@ PROGRAM_FOLDER
 So, one should be in the `PROGRAM_FOLDER`. You can check your current working directory in command line/bash by typing `pwd`.
 
 ## __Installation__
-Assuming `python` is already installed. I developed this client with `python 3.9`. But it should be compatible with most of the other versions.
+Assuming `python` is already installed. I developed this client with `python 3.10`. But it should be compatible with most of the other versions.
 
 Firstly, download (or clone from GitHub) the source files under this folder. In particular, make sure that `main.py` and `_gui.py` are present. If the `chat` folder (storing chat histories) is not created, the script will automatically create one for you.
 
