@@ -14,6 +14,9 @@ pip install torch --index-url https://download.pytorch.org/whl/cu118
 # Install openai (for gpt3 prompting)
 pip install openai
 
+# ChatGPT stuff
+pip install tiktoken
+
 # Install transformers
 pip install transformers scikit-learn
 
