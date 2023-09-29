@@ -1,0 +1,11 @@
+bs4
+chardet
+fire
+html2text
+html5lib
+google
+html5lib
+requests
+rich
+lxml
+whoosh
