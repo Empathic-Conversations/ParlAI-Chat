@@ -14,7 +14,7 @@ opt:
   debug: True
   models:
     RenderBot:
-      model: chatgpt
+      model: _custom/chatgpt
       gpt3:
         style: empathetic
 
