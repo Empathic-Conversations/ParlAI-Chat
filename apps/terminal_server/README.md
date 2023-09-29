@@ -12,4 +12,3 @@ The default port is `34596`. So, to connect to the chatbot, one should connect t
 
 ## __Config__
 See configuration `YAML` files under the folder [config](./config/) for how you can control the model loaded.
-
