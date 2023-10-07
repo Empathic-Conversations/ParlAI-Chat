@@ -3,7 +3,7 @@
 source $(conda info --base)/etc/profile.d/conda.sh
 conda deactivate
 
-# Create conda ParlAI & Mephisto env 
+# Create conda ParlAI env 
 #   - will create a conda env called <parlai>
 conda create --force -n parlai python=3.10 -y
 conda activate parlai
